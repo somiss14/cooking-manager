@@ -8,6 +8,7 @@ import {RecipeModel} from "../recipe.model";
 })
 export class RecipeListComponent {
   recipes: RecipeModel[] = [
+    new RecipeModel('A test recipe', 'Test desc', 'https://ps.w.org/wp-recipe-maker/assets/icon-128x128.png?rev=1491788'),
     new RecipeModel('A test recipe', 'Test desc', 'https://ps.w.org/wp-recipe-maker/assets/icon-128x128.png?rev=1491788')
   ];
 }
