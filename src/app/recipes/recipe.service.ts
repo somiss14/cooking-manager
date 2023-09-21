@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {RecipeModel} from "./recipe.model";
+import {IngredientModel} from "../shared/ingredient.model";
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,21 @@ import {RecipeModel} from "./recipe.model";
 export class RecipeService {
   recipeSelected = new EventEmitter<RecipeModel>()
   private recipes: RecipeModel[] = [
-    new RecipeModel('A test recipe', 'Test desc', 'https://ps.w.org/wp-recipe-maker/assets/icon-128x128.png?rev=1491788'),
-    new RecipeModel('A test recipe2', 'Test desc2', 'https://ps.w.org/wp-recipe-maker/assets/icon-128x128.png?rev=1491788')
+    new RecipeModel(
+      'A tasty schnitzel',
+      'A super tasty schnitzel',
+      'https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/mielone_02.jpg',
+      [
+        new IngredientModel('Meat', 1),
+        new IngredientModel('French Fries', 20)
+      ]),
+    new RecipeModel('A test recipe2',
+      'Better than Mc Donalds',
+      'https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/img_20220509_153243jpg1656604561301.jpg',
+      [
+        new IngredientModel('Buns', 2),
+        new IngredientModel('Meat', 1)
+      ])
   ];
   constructor() { }
 
