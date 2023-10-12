@@ -8,16 +8,16 @@
     </div>
     <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="onSelect('recipes')">Recipes</a></li>
-          <li><a href="#" (click)="onSelect('shopping-list')">Shopping list</a></li>
+        <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+          <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping list</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li appDropdown class="dropdown">
-          <a href="#" class="dropdown-toggle">Manage <span class="caret"></span></a>
+          <a style="cursor: pointer" class="dropdown-toggle">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#">Saving data</a>
-              <a href="#">Fetching data</a>
+              <a style="cursor: pointer">Saving data</a>
+              <a style="cursor: pointer">Fetching data</a>
             </li>
           </ul>
         </li>
