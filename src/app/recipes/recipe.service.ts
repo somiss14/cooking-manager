@@ -17,7 +17,8 @@ export class RecipeService {
         new IngredientModel('Meat', 1),
         new IngredientModel('French Fries', 20)
       ]),
-    new RecipeModel('A test recipe2',
+    new RecipeModel(
+      'A test recipe2',
       'Better than Mc Donalds',
       'https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/img_20220509_153243jpg1656604561301.jpg',
       [
@@ -35,5 +36,9 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: IngredientModel[]) {
     this.shoppingList.addIngredients(ingredients);
+  }
+
+  getRecipe(id: number) {
+    return this.recipes[id];
   }
 }
