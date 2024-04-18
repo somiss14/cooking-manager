@@ -19,8 +19,8 @@ export interface AuthResponseData {
 export class AuthService {
   user = new BehaviorSubject<UserModel>(null);
   private tokenExpirationTimer: any;
-  constructor(private http: HttpClient, private router: Router) {
-  }
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB7p7IbCEAn24YMVrAJqM7IipJFI3SyLbQ',
@@ -32,11 +32,14 @@ export class AuthService {
     ).pipe(
       catchError(this.handleError),
       tap(resData => {
-        this.handleAuthentication(resData.email,
+        this.handleAuthentication(
+          resData.email,
           resData.localId,
           resData.idToken,
-          +resData.expiresIn)
-      }));
+          +resData.expiresIn
+        );
+      })
+    );
   }
 
   login(email: string, password: string) {
@@ -53,16 +56,18 @@ export class AuthService {
           resData.email,
           resData.localId,
           resData.idToken,
-          +resData.expiresIn)
-      }));
+          +resData.expiresIn
+        );
+      })
+    );
   }
 
   autoLogin() {
     const userData: {
-      email: string,
-      id: string,
-      _token: string,
-      _tokenExpirationDate: string
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
       return;
@@ -94,7 +99,7 @@ export class AuthService {
   autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
-    }, expirationDuration)
+    }, expirationDuration);
   }
 
   private handleAuthentication(
@@ -110,7 +115,7 @@ export class AuthService {
   }
 
   private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occured!';
+    let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
     }

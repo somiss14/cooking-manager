@@ -6,17 +6,19 @@ import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy{
+  isAuthenticated = false;
   private userSub: Subscription;
-  isAuthenticaded = false;
+
   constructor(private dataStorageService: DataStorageService, private authService: AuthService) {}
 
   ngOnInit() {
     this.userSub = this.authService.user.subscribe(user => {
-      this.isAuthenticaded = !!user;
+      this.isAuthenticated = !!user;
+      console.log(!user);
+      console.log(!!user);
     });
   }
 
@@ -28,11 +30,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.dataStorageService.fetchRecipes().subscribe();
   }
 
-  ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
-
   onLogout() {
     this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

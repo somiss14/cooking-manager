@@ -10,7 +10,7 @@ export class RecipesResolverService implements Resolve<RecipeModel[]> {
   constructor(private dataStorageService: DataStorageService, private recipesService: RecipeService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const recipes = this.recipesService.getRecipes();
 
     if (recipes.length === 0) {
@@ -19,5 +19,4 @@ export class RecipesResolverService implements Resolve<RecipeModel[]> {
       return recipes;
     }
   }
-
 }

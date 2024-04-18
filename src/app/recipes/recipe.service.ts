@@ -40,12 +40,12 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  addIngredientsToShoppingList(ingredients: IngredientModel[]) {
-    this.shoppingList.addIngredients(ingredients);
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 
-  getRecipe(id: number) {
-    return this.recipes[id];
+  addIngredientsToShoppingList(ingredients: IngredientModel[]) {
+    this.shoppingList.addIngredients(ingredients);
   }
 
   addRecipe(recipe: RecipeModel){
@@ -59,7 +59,7 @@ export class RecipeService {
   }
 
   deleteRecipe(index: number) {
-    this.recipes.splice(index,1);
+    this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
   }
 }
