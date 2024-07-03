@@ -4,10 +4,17 @@ import {Subject} from "rxjs";
 export class ShoppingListService {
   ingredientsChanged = new Subject<IngredientModel[]>();
   startedEditing = new Subject<number>();
-  private ingredients: IngredientModel[] = [
-    new IngredientModel('Apples', 5),
-    new IngredientModel('Tomatoes', 10),
-  ];
+  // private ingredients: IngredientModel[] = [
+  //   new IngredientModel('Apples', 5),
+  //   new IngredientModel('Tomatoes', 10),
+  // ];
+
+  private ingredients: IngredientModel[] = [];
+
+  setIngredients(ingredients: IngredientModel[]) {
+    this.ingredients = ingredients;
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
   getIngredients() {
     return this.ingredients.slice();
